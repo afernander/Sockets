@@ -57,6 +57,7 @@ public class Server extends Thread {
 
             String ClientIP = clientSocket.getRemoteSocketAddress().toString();
             System.out.println(ClientIP + " is  now connected. Have fun!");
+         
             while ((inputLine = in.readLine()) != null) {
                 System.out.println("Client " + ClientIP + ": " + inputLine);
                 String ans = analyzer(inputLine);
@@ -64,7 +65,7 @@ public class Server extends Thread {
                 if (inputLine.equals("Bye.")) {
                     break;
                 }
-                // sendMessage = keyRead.readLine();
+                
                 sendMessage = ans;
                 out.println(sendMessage);
                 out.flush();

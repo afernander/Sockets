@@ -28,14 +28,15 @@ public class Client {
 
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
         String userInput;
-
-        System.out.println("Type Message (\"Bye.\" to quit)");
-        while ((userInput = stdIn.readLine()) != null) {
+        System.out.println("Welcome to the calculator in tcp socket ( you can quit with \"q\"");
+        while (true) {
             String operation[] = menu();
+            if (operation[0].equalsIgnoreCase("q") || operation[1].equalsIgnoreCase("q")
+                    || operation[2].equalsIgnoreCase("q"))
+                break;
             // out.println(userInput);
             out.println(operation[0] + " " + operation[1] + " " + operation[2]);
-            if (userInput.equals("Bye."))
-                break;
+            
 
             System.out.println("Server : " + in.readLine());
         }
@@ -49,22 +50,37 @@ public class Client {
     private static String[] menu() throws IOException {
 
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-
+        String word = " ";
         String[] operation = new String[3];
         System.out.println("Plese enter a number");
-        operation[0] = String.valueOf(stdIn.readLine());
-        do  {
+        word = stdIn.readLine();
+        if (word.equalsIgnoreCase("q")) {
+            operation[0] = "q";
+            return operation;
+        } else {
+            operation[0] = String.valueOf(String.valueOf(word));
+            word = "";
+        }
+
+        do {
             System.out.println("Enter an operation");
             String option = stdIn.readLine();
-            if ((option.equals("+") || option.equals("-")|| option.equals("/") || option.equals("*"))) {
+            if ((option.equals("+") || option.equals("-") || option.equals("/") || option.equals("*"))) {
                 operation[1] = String.valueOf(option);
                 break;
-            }else{
+            } else {
                 System.out.println("Enter a valid operation");
             }
-        }while (true);
+        } while (true);
         System.out.println("Enter another number");
-        operation[2] = stdIn.readLine();
+        word = stdIn.readLine();
+        if (word.equalsIgnoreCase("q")) {
+            operation[2] = "q";
+            return operation;
+        } else {
+            operation[2] = String.valueOf(String.valueOf(word));
+            word = "";
+        }
         return operation;
 
     }
