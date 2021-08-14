@@ -1,6 +1,7 @@
 
 import java.net.ServerSocket;
 import java.net.Socket;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -58,11 +59,13 @@ public class Server extends Thread {
             System.out.println(ClientIP + " is  now connected. Have fun!");
             while ((inputLine = in.readLine()) != null) {
                 System.out.println("Client " + ClientIP + ": " + inputLine);
+                String ans = analyzer(inputLine);
 
                 if (inputLine.equals("Bye.")) {
                     break;
                 }
-                sendMessage = keyRead.readLine();
+                // sendMessage = keyRead.readLine();
+                sendMessage = ans;
                 out.println(sendMessage);
                 out.flush();
 
@@ -75,5 +78,29 @@ public class Server extends Thread {
             System.err.println("Problem with Communication Server");
             System.exit(1);
         }
+    }
+
+    private String analyzer(String op) {
+
+        String[] operation = op.split(" ");
+        float ans = 0;
+
+        switch (operation[1]) {
+            case "+":
+                ans = Float.parseFloat(operation[0]) + Float.parseFloat(operation[2]);
+                break;
+            case "-":
+                ans = Float.parseFloat(operation[0]) - Float.parseFloat(operation[2]);
+                break;
+            case "/":
+                ans = Float.parseFloat(operation[0]) / Float.parseFloat(operation[2]);
+                break;
+            case "*":
+                ans = Float.parseFloat(operation[0]) * Float.parseFloat(operation[2]);
+                break;
+
+        }
+
+        return String.valueOf(ans);
     }
 }
