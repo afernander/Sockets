@@ -8,14 +8,14 @@ import java.io.PrintWriter;
 public class Client {
     public static void main(String[] args) throws IOException {
 
-        String serverHostname = new String("127.0.0.1");
+        String serverHostname = new String("52.3.7.32");
 
         Socket echoSocket = null;
         PrintWriter out = null;
         BufferedReader in = null;
 
         try {
-            echoSocket = new Socket("127.0.0.1", 10008);
+            echoSocket = new Socket("52.3.7.32", 10008);
             out = new PrintWriter(echoSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         } catch (UnknownHostException e) {
