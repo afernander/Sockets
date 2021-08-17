@@ -22,15 +22,15 @@ En este caso: el protocolo de la aplicación, middleware, API, etc es responsabi
 # Solución
 Primero que todo, es importante hablar sobre la definición de **Socket**.
 
-**Socket**: es un medio por el cual dos **procesos** (que pueden estr situados en computadoras distintas) pueden intercambiar datos, generalmente de manera fiable y ordenada. El término de **socket** también es usado como el nombre de una **API** para la familia de _protocolos de internet_ **TCP/IP** que proviene del sistema operativo. Los **sockets** constituyen el mecanismo para la entrega de paquetes de datos provenientes de la **tarjeta de red** a los **procesos** o **hilos** apropiados. Un **socket** queda definido por un par de **direcciones IP** local y remota, un **protocolo de transporte** y un par de números de **puerto local** y **remoto**.
+**Socket**: es un medio por el cual dos **procesos** (que pueden estar situados en computadoras distintas) pueden intercambiar datos, generalmente de manera fiable y ordenada. El término de **socket** también es usado como el nombre de una **API** para la familia de _protocolos de internet_ **TCP/IP** que proviene del sistema operativo. Los **sockets** constituyen el mecanismo para la entrega de paquetes de datos provenientes de la **tarjeta de red** a los **procesos** o **hilos** apropiados. Un **socket** queda definido por un par de **direcciones IP** local y remota, un **protocolo de transporte** y un par de números de **puerto local** y **remoto**.
 
 Para que dos procesos puedan comunicarse entre sí es necesario:
-* Que un proceso sea capaz de localizar al otro
+* Que un proceso sea capaz de localizar al otro.
 * Que ambos procesos sean capaces de intercambiarse cualquier secuencia de **octetos**, es decir, datos relevantes a su propósito o finalidad.
 
 Recursos necesarios:
 * Un par de **direcciones** del protocolo de red (**IP** en el caso de que usemos el protocolo **TCP/IP**) que sirven para identificar la computadora de origen y la remota.
-* Independientemente del protocolo, se requiere de un par de números de puerto, que sirven para identificar lor programas dentro de cada computadora.
+* Independientemente del protocolo, se requiere de un par de números de puerto, que sirven para identificar los programas dentro de cada computadora.
 
 | UDP (User Datagram Protocol)                                                                                                                | TCP (Transmission Control Protocol)                                                                                                                                                                                                                     |
 |---------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
