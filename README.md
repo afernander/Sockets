@@ -49,3 +49,41 @@ Las razones para elegir **TCP** sobre **UDP** son:
 * **Verificación**: Cuando los paquetes TCP son recibidos por el receptor (valga la redundancia), este envía una señal de confirmación al emisor. Si el emisor no la recibe, asumirá que los paquetes no fueron entregados, o bien, fueron entregados corruptos, por lo que procede a enviarlos nuevamente. Por otra parte, UDP no tiene señales de confirmación, por lo que el emisor no sabe si los paquetes fueron recibidos o no.
 * **Control de congestión**: TCP se asegura de controlar la congestión o el alto flujo. Al ser un protocolo orientado a la conexión, se asegura de que no haya congestión en el canal de datos que se estableció. UDP al ser connectionless, no se preocupa mucho por esto. Cada paquete se envía por separado y si un paquete se pierde debido a la congestión, el receptor no puede hacer mayor cosa al respecto.
 * **Aplicaciones**: TCP se usa en aplicaciones donde la confiabilidad es más importante, como envío de archivos, emails, web browsing, etc. UDP es usado en aplicaciones donde la velocidad es más importante, como videoconferencias, live streaming y juegos online.
+
+---
+
+## Arquitectura
+Para el desarrollo de este reto hicimos uso de una arquitectura **Cliente-Servidor**
+
+![Cliente-Servidor](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Client-server-model.svg/1200px-Client-server-model.svg.png)
+
+Este es un modelo de diseño de software para **sistemas distribuidos** en el cual las tareas se reparten entre los proveedores de reursos o servicios (servidores) y los demandantes (clientes). Un cliente realiza peticiones a otro programa ubicado en el **servidor**, quien le da la respuesta.
+
+Este concepto es aplicable a programas que se ejecutan en una sola computadora, pero es más provechoso en un sistema operativo **multiusuario** distribuido a través de una red de computadoras.
+
+En la arquitectura **cliente-servidor**, por cada **cliente** que llega al **servidor**, se crea un **hilo**.
+
+---
+
+## Instancias EC2
+Para las máquinas virtuales, usamos instancias **EC2** de **AWS** con sistema operativo **Ubuntu**, como lo podemos ver en la imagen a continuación:
+
+![EC2](https://i.imgur.com/DTsnwmq.jpg)
+
+Nuestro programa es una calculadora, en la cual desde los **clientes** se realiza una operación, la cual es solucionada en el **servidor**, que devuelve una respuesta.
+
+Al tener un **hilo** por cada cliente, nos aseguramos de que a cada usuario le llegue su respuesta correspondiente.
+
+A continuación tenemos la lista de las instancias creadas, desde la interfaz de **AWS Educate**:
+
+![Maquinas](https://i.imgur.com/yiwZvHd.jpg)
+
+Para cada una de nuestras máquinas virtuales, fue necesario crear **direcciones IP elásticas** para permitir una comunicación entre ellas.
+
+![Elasticas](https://i.imgur.com/7MHLP2n.jpg)
+
+En el **security group** del **server** fue necesario darle permisos por **TCP** a las **direcciones IP elásticas** de las máquinas **clientes** para que estas se pudieran comunicar:
+
+![Permisos](https://i.imgur.com/9AKNVZl.jpg)
+
+También, como en prácticas anteriores en la materia de **Telemática** fue necesario configurar **SSH** en los clientes para poder conectarnos desde nuestra máquina local para instalarles **Java** y controlar demás cosas.
