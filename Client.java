@@ -27,7 +27,7 @@ public class Client {
         }
 
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Welcome to the calculator in tcp socket ( you can quit with \"q\"");
+        System.out.println("Welcome to the calculator in TCP Socket (you can quit with \"q\"");
         while (true) {
             String operation[] = menu();
             if (operation[0].equalsIgnoreCase("q") || operation[1].equalsIgnoreCase("q")
